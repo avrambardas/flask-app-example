@@ -1,5 +1,5 @@
 # Model-deployment
-Model deployment example
+Model deployment example using Flask and [Render](https://render.com/)
 
 Live at: https://model-deployment-fxci.onrender.com/
 
