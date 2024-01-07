@@ -1,12 +1,12 @@
 # Model-deployment
 Model deployment example
 
-conda env name: model_deployment
+Live at: https://model-deployment-fxci.onrender.com/
 
-conda create -n model_deployment python=3.10.0
-pip install flask gunicorn pickle-mixin scikit-learn
+You can run the code on github codespace with the following steps:
 
-# To activate this environment, use 
-#     $ conda activate model_deployment 
-# To deactivate an active environmen use
-#     $ conda deactivate 
+1. create codna env: conda create -n model_deployment python=3.10.0
+2. activate env: conda activate model_deployment
+3. install the following: pip install flask gunicorn pickle-mixin scikit-learn
+4. run app: python app.py
+5. deactivate env: conda deactivate
