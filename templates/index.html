@@ -112,42 +112,6 @@
         </div>
     </div>
 
-    <!-- New Dog Classifier container 
-    <div class="container">
-        <div class="column">
-            <h2>Dog Classifier</h2>
-        </div>
-        <div class="column">
-            <div id="dog-form" method="post" action="/predictDog">
-                <img id="uploadedImage" src="https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQOO0X7mMnoYz-e9Zdc6Pe6Wz7Ow1DcvhEiaex5aSv6QJDoCtcooqA7UUbjrphvjlIc" alt="Placeholder Dog Image">
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                <label for="fileInput" class="upload-btn">Upload Image</label>
-                <button id="resetBtn">Reset</button>
-            </div>
-        </div>
-    </div>
-    -->
-    <div class="container">
-        <div class="column">
-            <h2>Dog Classifier</h2>
-        </div>
-        <div class="column">
-            <form id="dog-form" method="post" action="/predictDog" enctype="multipart/form-data">
-                <img id="uploadedImage" src="https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQOO0X7mMnoYz-e9Zdc6Pe6Wz7Ow1DcvhEiaex5aSv6QJDoCtcooqA7UUbjrphvjlIc" alt="Placeholder Dog Image">
-                <input type="file" id="fileInput" name="dog_image" accept="image/*" style="display: none;">
-                <label for="fileInput" class="upload-btn">Upload Image</label>
-                <button type="submit" id="submitBtn">Submit</button>
-                <button type="reset" id="resetBtn">Reset</button>
-            </form>
-            <div class="result" id="predictionResult">
-            {% if prediction %}
-                <h2 class="dogLabel">{{ prediction }}</h2>
-            {% endif %}
-            </div>
-        </div>
-        
-    </div>
-
     <script>
         // for the email spam form
         const resetEmailBtn = document.getElementById('resetEmailBtn');
@@ -155,40 +119,11 @@
         const predictionResult = document.getElementById('predictionResult');
         const emailForm = document.getElementById('email-form');
 
-        // for dog prediction form
-        const fileInput = document.getElementById('fileInput');
-        const uploadedImage = document.getElementById('uploadedImage');
-        const resetBtn = document.getElementById('resetBtn');
-        
         // email spam form
         resetEmailBtn.addEventListener('click', function() {
             SpamEmailtextarea.value = null
             predictionResult.innerHTML = '';
             event.preventDefault();
-        });
-
-
-        // dog prediction form
-        fileInput.addEventListener('change', function(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    uploadedImage.src = e.target.result;
-                };
-                reader.readAsDataURL(file);
-            }
-        });
-
-        resetBtn.addEventListener('click', function() {
-            uploadedImage.src = 'https://t2.gstatic.com/licensed-image?q=tbn:ANd9GcQOO0X7mMnoYz-e9Zdc6Pe6Wz7Ow1DcvhEiaex5aSv6QJDoCtcooqA7UUbjrphvjlIc';
-            fileInput.value = null;
-        });
-
-        const uploadBtn = document.querySelector('.upload-btn');
-        uploadBtn.addEventListener('click', function(event) {
-            event.preventDefault();
-            fileInput.click();
         });
     </script>
 </body>
