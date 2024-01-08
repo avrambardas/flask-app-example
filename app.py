@@ -1,17 +1,18 @@
 from flask import Flask, render_template, request
-from tensorflow.keras.models import load_model
 from keras.preprocessing.image import load_img, img_to_array
-from keras.applications.vgg16 import preprocess_input, decode_predictions
-from tensorflow.keras.applications.resnet50 import ResNet50
+from tensorflow.keras.applications import MobileNet
+from tensorflow.keras.applications.mobilenet import preprocess_input
+from tensorflow.keras.preprocessing import image as tfimage
+from tensorflow.keras.applications.mobilenet import decode_predictions
 from PIL import Image
 import pickle
+import numpy as np
 import io
 
 app = Flask(__name__)
 cv = pickle.load(open("models/EmailClassifier/cv.pkl", "rb"))
 clf = pickle.load(open("models/EmailClassifier/clf.pkl", "rb"))
-#model_ResNet50 = load_model('models/DogClassifier/resnet50_model.h5')
-model_ResNet50 = ResNet50(weights='imagenet')
+MobileNet = pickle.load(open("models/DogClassifier/MobileNet.pkl", "rb"))
 
 @app.route('/')
 def home():
@@ -38,13 +39,20 @@ def predictDog():
     image = load_img(io.BytesIO(file.read()))
     desired_size = (224, 224)
     image = image.resize(desired_size)
-    image = img_to_array(image)
-    image = image.reshape((1, image.shape[0], image.shape[1], image.shape[2]))
-    image = preprocess_input(image)
-    yhat = model_ResNet50.predict(image)
-    label = decode_predictions(yhat)
-    label = '%s (%.2f%%)' % (label[0][0][1], label[0][0][2]*100)
-    return render_template("index.html", prediction=label)
+
+    img_array = tfimage.img_to_array(image)
+    img_array = np.expand_dims(img_array, axis=0)
+    img_array = preprocess_input(img_array)
+
+    # Predict the class of the image
+    predictions = MobileNet.predict(img_array)
+    decoded_predictions = decode_predictions(predictions, top=1)[0]  # Top 3 predictions
+
+    # Display the top predictions
+    for i, (imagenet_id, label, score) in enumerate(decoded_predictions):
+        result = label + " (" + str(round(score*100, 2)) + "%)"
+
+    return render_template("index.html", prediction=result)
 
 
 
