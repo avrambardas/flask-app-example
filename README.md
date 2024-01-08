@@ -3,7 +3,7 @@ Model deployment example using Flask and [Render](https://render.com/)
 
 ![preview](https://github.com/avrambardas/Model-deployment/blob/Spam-detection/images/preview.png)
 
-Live at: https://model-deployment-fxci.onrender.com/
+Live preview [here](https://email-spam-detection-preview.onrender.com/)
 
 You can run the code on github codespace with the following steps:
 
