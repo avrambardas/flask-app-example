@@ -2,6 +2,7 @@ from flask import Flask, render_template, request
 from tensorflow.keras.models import load_model
 from keras.preprocessing.image import load_img, img_to_array
 from keras.applications.vgg16 import preprocess_input, decode_predictions
+from tensorflow.keras.applications.resnet50 import ResNet50
 from PIL import Image
 import pickle
 import io
@@ -9,7 +10,8 @@ import io
 app = Flask(__name__)
 cv = pickle.load(open("models/EmailClassifier/cv.pkl", "rb"))
 clf = pickle.load(open("models/EmailClassifier/clf.pkl", "rb"))
-model_ResNet50 = load_model('models/DogClassifier/resnet50_model.h5')
+#model_ResNet50 = load_model('models/DogClassifier/resnet50_model.h5')
+model_ResNet50 = ResNet50(weights='imagenet')
 
 @app.route('/')
 def home():
