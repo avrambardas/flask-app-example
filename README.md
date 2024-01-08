@@ -1,6 +1,8 @@
 # Model-deployment
 Model deployment example using Flask and [Render](https://render.com/)
 
+![alt text](https://github.com/avrambardas/Model-deployment/blob/main/images/preview.png)
+
 Live at: https://model-deployment-fxci.onrender.com/
 
 You can run the code on github codespace with the following steps:
