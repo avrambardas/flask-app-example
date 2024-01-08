@@ -1,11 +1,11 @@
 # Model-deployment
 Model deployment example using Flask and [Render](https://render.com/)
 
-![alt text](https://github.com/avrambardas/Model-deployment/blob/main/images/preview.png)
+![preview](https://github.com/avrambardas/Model-deployment/blob/main/images/preview.png)
 
-Live at: https://model-deployment-fxci.onrender.com/
+Live small preview at: https://email-spam-detection-preview.onrender.com/
 
-You can run the code on github codespace with the following steps:
+For full access, you can run the code on github codespace with the following steps:
 
 1. create codna env: conda create -n model_deployment python=3.10.0
 2. activate env: conda activate model_deployment
