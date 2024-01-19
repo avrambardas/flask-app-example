@@ -34,7 +34,7 @@ fqdn==1.5.1
 fsspec==2023.12.1
 gast==0.5.4
 gitdb==4.0.11
-GitPython==3.1.40
+GitPython==3.1.41
 google-auth==2.26.1
 google-auth-oauthlib==1.2.0
 google-pasta==0.2.0
